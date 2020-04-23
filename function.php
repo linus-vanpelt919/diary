@@ -121,9 +121,14 @@ function validEmailDup($email){
 //DB接続関数
 function dbConnect(){
   //DBへの接続準備
-  $dsn = 'mysql:dbname=diary;host=localhost;charset=utf8';
-  $user = 'root';
-  $password = 'root';
+    $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+    $db['dbname'] = ltrim($db['path'], '/');
+    $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+    $user = $db['user'];
+    $password = $db['pass'];
+  //$dsn = 'mysql:dbname=diary;host=localhost;charset=utf8';
+  //$user = 'root';
+  //$password = 'root';
   $options = array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
