@@ -219,6 +219,10 @@ div.err select.input-bgColor{
   margin-top: 20px;
   background: #3a3838ab;
   color: white;
+  cursor: pointer;
+}
+.button:hover{
+  background: #989898;
 }
 #sidebar ul.side-nav li a{
   color: gray;
@@ -262,7 +266,7 @@ div.err select.input-bgColor{
   margin: 5px;
   padding: 3px;
   display: block;
-  width: 70%;
+  /*width: 70%;*/
 }
 .category-bgColor a{
   /* text-decoration: none; */
@@ -514,6 +518,9 @@ color: #e0d6d6;
 }
 .comment-detail{
   margin-bottom: 50px;
+}
+.comment-list{
+  padding: 20px;
 }
 /* 画像アップ */
 .img-icon{

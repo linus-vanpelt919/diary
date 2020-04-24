@@ -112,61 +112,56 @@ require('header.php');
   </article>
 <!-- コメントがあった場合ここに表示する -->
   <div class="display-area">
-<?php if(!empty($getUserComment)): ?>
-<section class="comment-display-area">
-    <h2 class="comment-title">コメント</h2>
-<?php foreach($getUserComment as $key => $val): ?>
-     <div>
-      <div class="comment-flex">
-        <img src="<?php echo $val['pic'] ;?>" alt="" class="img-icon-style">
-        <div class="comment-info">
-          <p class="comment-user-name"><?php echo $val['name'] ;?>より:</p>
-          <p class="comment-user-date"><?php echo $val['create_date'] ;?></p>
-        </div>
+        <?php if(!empty($getUserComment)): ?>
+            <section class="comment-display-area">
+                    <h2 class="comment-title">コメント</h2>
+                <?php foreach($getUserComment as $key => $val): ?>
+                 <div>
+                  <div class="comment-flex">
+                    <img src="<?php echo $val['pic'] ;?>" alt="" class="img-icon-style">
+                    <div class="comment-info">
+                      <p class="comment-user-name"><?php echo $val['name'] ;?>より:</p>
+                      <p class="comment-user-date"><?php echo $val['create_date'] ;?></p>
+                    </div>
+                  </div>
+                  <div class="comment-detail">
+                    <p><?php echo $val['comment'] ;?></p>
+                  </div>
+                 <?php endforeach; ?>
+                  </div>
+            </section>
+        <?php endif ;?>
+    <div class="comment-area">
+      <h2 class="comment-title">COMMENT</h2>
+      <div class="area-msg area-style">
+         <?php echo showErrMsg('common'); ?>
       </div>
-      <div class="comment-detail">
-        <p><?php echo $val['comment'] ;?></p>
-      </div>
-<?php endforeach; ?>
+          <form class="comment-form " action="" method="post">
+               <label class="<?php if(!empty($err_msg['comment'])) echo 'err' ;?>">
+                <span class="subject">コメント(必須)</span>
+                <textarea name="comment" class="diary-text comment-height input-bgColor" rows="8" cols="80" placeholder="コメントを記入してください"></textarea>
+               </label>
+            <div class="area-msg area-style">
+             <?php echo showErrMsg('comment'); ?>
+            </div>
+           <label class="<?php if(!empty($err_msg['name'])) echo 'err' ;?>">
+                <span class="subject">名前 *任意</span>
+                <input type="text" class="comment-text input-bgColor" name="name" value="">
+           </label>
+            <div class="area-msg area-style">
+             <?php echo showErrMsg('name'); ?>
+            </div>
+           <label class="<?php if(!empty($err_msg['email'])) echo 'err' ;?>">
+                <span class="subject">メールアドレス *任意 (メールアドレスが公開されることはありません)</span>
+                <input type="text" class="comment-text input-bgColor" name="email" value="">
+           </label>
+            <div class="area-msg area-style">
+                <?php echo showErrMsg('email'); ?>
+            </div>
+                <input type="submit" class="btn btn-right" name="submit" value="コメントする">
+          </form>
+    </div>
   </div>
-</section>
-<?php endif ;?>
-<div class="comment-area">
-  <h2 class="comment-title">COMMENT</h2>
-  <div class="area-msg area-style">
-     <?php echo showErrMsg('common'); ?>
-  </div>
-  <form class="comment-form " action="" method="post">
-   <label class="<?php if(!empty($err_msg['comment'])) echo 'err' ;?>">    
-    <span class="subject">コメント(必須)</span>
-    <textarea name="comment" class="diary-text comment-height input-bgColor" rows="8" cols="80" placeholder="コメントを記入してください"></textarea>
-   </label>
-    <div class="area-msg area-style">
-     <?php echo showErrMsg('comment'); ?>
-  </div>
-<!--    <div class=" text-counter">-->
-      <!-- <p class="right-span">
-      <span class="show-count">0</span>/500</p></div>
-      <div class="area-msg area-style"> -->
-<!--    </div>-->
-   <label class="<?php if(!empty($err_msg['name'])) echo 'err' ;?>">
-    <span class="subject">名前 *任意</span>
-    <input type="text" class="comment-text input-bgColor" name="name" value="">
-   </label>
-    <div class="area-msg area-style">
-     <?php echo showErrMsg('name'); ?>
-  </div>
-   <label class="<?php if(!empty($err_msg['email'])) echo 'err' ;?>">
-    <span class="subject">メールアドレス *任意 (メールアドレスが公開されることはありません)</span>
-    <input type="text" class="comment-text input-bgColor" name="email" value="">
-   </label>
-    <div class="area-msg area-style">
-     <?php echo showErrMsg('email'); ?>
-  </div>
-    <input type="submit" class="btn btn-right" name="submit" value="コメントする">
-  </form>
-</div>
-
 
 <?php
 require('footer.php');

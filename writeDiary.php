@@ -9,7 +9,9 @@ debug('日記作成ページ');
 // $u_id = $_SESSION['user_id'];
 $edit_flg = (!empty($_GET)) ? true : false;//trueなら編集画面
 debug('$edit_flg'.print_r($edit_flg,true));
-$d_id = $_GET['d_id'];
+if($edit_flg){//編集画面なら
+    $d_id = $_GET['d_id'];
+}
 $dbFormData = getCategoryOne($d_id);
 // $dbFormData = getContents($u_id); $d_idで判断したい
 $categoryData = getCategoryData();//定義する場所によてエラーPOST送信の前に定義しないといけない
@@ -104,9 +106,9 @@ if(empty($err_msg)){
        <p class="category-title">カテゴリー   ＊必須</p>
        <div class="cp_ipselect cp_sl01 <?php if(!empty($err_msg['category_id'])) echo 'err' ?>">
          <select  name="category_id" class="input-bgColor">
-             <option value="0"<?php if($dbFormData['category_id'] === 0){echo 'selected' ;} ?>>選択してください</option>
+             <option value="0"<?php if($dbFormData['category_id'] == 0){echo 'selected' ;} ?>>選択してください</option>
              <?php foreach ($categoryData as $key => $val): ?>
-           <option value="<?php echo $val['id']; ?>" <?php if($dbFormData['category_id'] === $val['id']){ echo 'selected'; } ?>><?php echo $val['name']; ?></option>
+           <option value="<?php echo $val['id']; ?>" <?php if($dbFormData['category_id'] == $val['id']){ echo 'selected'; } ?>><?php echo $val['name']; ?></option>
          <?php endforeach; ?>
          </select>
        </div>
